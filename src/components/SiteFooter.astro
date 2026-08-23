@@ -1,0 +1,24 @@
+---
+import { withBase } from '../lib/withBase';
+---
+
+<footer class="site-footer">
+  <a href={withBase('/about/')}>このサイトについて</a>
+  <span aria-hidden="true">・</span>
+  <a href={withBase('/privacy/')}>プライバシーポリシー</a>
+</footer>
+
+<style>
+  .site-footer {
+    max-width: var(--max-content-width);
+    margin: 3rem auto 1.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+  }
+  .site-footer a {
+    color: var(--color-text-muted);
+  }
+</style>

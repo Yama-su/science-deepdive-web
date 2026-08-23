@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { withBase } from '../lib/withBase';
+import SiteFooter from '../components/SiteFooter.astro';
 import '../styles/science-deepdive.css';
 
 const categoryLabel = {
@@ -49,6 +50,8 @@ const posts = allPosts.sort(
         <p>まだ記事がありません。<code>src/content/blog/</code>にMarkdown記事を追加してください。</p>
       )}
     </main>
+
+    <SiteFooter />
 
     <style>
       .post-list {

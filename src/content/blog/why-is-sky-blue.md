@@ -1,0 +1,94 @@
+---
+id: "science-deepdive-002"
+title: "空はなぜ青いのか：レイリー散乱から読み解く空の色"
+slug: "why-is-sky-blue"
+category: "physics"
+tags: ["物理学", "光学", "レイリー散乱", "シミュレーション"]
+target_audience: ["小学生", "中高生", "大学生・一般"]
+reading_time_minutes: 10
+page_count_a4: 5
+published_at: "2026-08-23"
+author:
+  name: "サイエンス・ディープダイブ編集部"
+  avatar: "/assets/authors/editorial.png"
+seo:
+  meta_title: "空はなぜ青いの？レイリー散乱でわかる空と夕焼けの色の仕組み"
+  meta_description: "太陽の光は白いのに、空はなぜ青く見えるのか。光の散乱という現象から、夕焼けが赤い理由まで解説。"
+  og_image: "/assets/simulations/sky_blue_rayleigh.png"
+lead_excerpt: "太陽の光は本来ほぼ白色なのに、見上げた空はいつも青色。太陽そのものは白っぽいのに、周りの空だけが青いのはなぜでしょうか。"
+table_of_contents: true
+math: true
+syntax_highlight: true
+has_affiliate_links: false
+---
+
+## 1. 素朴な疑問
+
+晴れた日に空を見上げると、どこまでも青い色が広がっています。でも太陽の光自体は白っぽく見えます。同じ光なのに、空だけが青いのはなぜでしょうか。
+
+## 2. よくある発想
+
+<div class="callout callout-intuition">
+  <div class="callout-title">よくある3大直感</div>
+  <ul>
+    <li><strong>直感1：</strong>「空気そのものが青い色をしている」説</li>
+    <li><strong>直感2：</strong>「海の色が反射している」説</li>
+    <li><strong>直感3：</strong>「青い光だけが宇宙から降ってくる」説</li>
+  </ul>
+</div>
+
+実はどれも違います。空気は無色透明ですし、宇宙空間から見た地球外側の空は真っ黒です。
+
+## 3. わかりやすい模範的答え
+
+<div class="callout callout-kids">
+  <div class="callout-title">子どもへの伝え方（要点）</div>
+  <p>
+    太陽の光には赤・オレンジ・黄・緑・青・紫など、いろいろな色の光が混ざっています。
+    この光が空気中の小さな粒にぶつかると、色によって「散らばりやすさ」が違います。
+    青い光はとても散らばりやすいので、空全体に散らばって、どこを見ても青く見えるのです。
+  </p>
+</div>
+
+## 4. わかりやすく厳密な答え
+
+この現象は「レイリー散乱」と呼ばれ、大気中の分子（光の波長より十分小さい粒子）による光の散乱強度は、光の波長 $\lambda$ の4乗に反比例することが知られています。
+
+<div class="math-proof-box">
+  <div class="proof-header">レイリー散乱の強度</div>
+  <div class="proof-body">
+    $$I(\lambda) \propto \frac{1}{\lambda^4}$$
+    可視光線のうち、波長の短い青色光（約450nm）は、波長の長い赤色光（約700nm）に比べて
+    $$\left(\frac{700}{450}\right)^4 \approx 5.8$$
+    倍も強く散乱される。
+  </div>
+</div>
+
+つまり太陽から届く白色光のうち、青い成分だけが大気中で四方八方に散らばり、空全体が青く輝いて見えるのです。逆に、夕方に太陽が地平線近くにあるときは、光が大気中を通る距離が長くなるため、青色光はほとんど散乱されつくして届かなくなり、散乱されにくい赤色光だけが目に届きます。これが夕焼けが赤い理由です。
+
+## 5. 数値シミュレーション
+
+レイリー散乱の強度が波長のマイナス4乗に比例する様子をグラフにしました。
+
+![レイリー散乱強度と波長の関係、青い光ほど強く散乱される](/assets/simulations/sky_blue_rayleigh.png)
+*図1: 波長が短い（青側）ほど散乱強度が急激に大きくなる*
+
+このグラフは以下のPythonコードで生成しました。
+
+```python
+import numpy as np
+
+wavelength_nm = np.linspace(380, 750, 400)
+scattering_intensity = 1 / (wavelength_nm ** 4)
+scattering_intensity /= scattering_intensity.max()
+```
+
+## 6. まとめ
+
+<div class="callout callout-summary">
+  <div class="callout-title">この疑問が教えてくれる世界の見方</div>
+  <p>
+    空の色は「空気の色」ではなく、太陽光と大気分子との相互作用が生み出す物理現象です。
+    同じ光の散乱という仕組みが、青い空と赤い夕焼けの両方を説明してくれます。
+  </p>
+</div>

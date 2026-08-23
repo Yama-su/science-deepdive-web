@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { visit } from 'unist-util-visit';
+import sitemap from '@astrojs/sitemap';
 
 const SITE = 'https://Yama-su.github.io';
 const BASE = '/science-deepdive-web';
@@ -27,6 +28,7 @@ function rehypePrefixBase() {
 export default defineConfig({
   site: SITE,
   base: BASE,
+  integrations: [sitemap()],
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex, rehypePrefixBase],

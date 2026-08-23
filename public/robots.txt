@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yama-su.github.io/science-deepdive-web/sitemap-index.xml

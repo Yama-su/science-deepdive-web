@@ -1,6 +1,8 @@
 ---
 import '../styles/science-deepdive.css';
 import AdSlot from '../components/AdSlot.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import AffiliateDisclosure from '../components/AffiliateDisclosure.astro';
 import { withBase } from '../lib/withBase';
 
 const audienceBadge = {
@@ -55,6 +57,8 @@ const ogImageUrl = Astro.site
 
     <h1>{post.title}</h1>
 
+    {post.has_affiliate_links && <AffiliateDisclosure />}
+
     {post.table_of_contents && headings.length > 0 && (
       <details class="toc-box" open>
         <summary>目次</summary>
@@ -78,5 +82,7 @@ const ogImageUrl = Astro.site
       </div>
     </AdSlot>
   </main>
+
+  <SiteFooter />
 </body>
 </html>

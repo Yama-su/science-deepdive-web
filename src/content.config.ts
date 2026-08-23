@@ -28,6 +28,7 @@ const blog = defineCollection({
     table_of_contents: z.boolean().default(true),
     math: z.boolean().default(true),
     syntax_highlight: z.boolean().default(true),
+    has_affiliate_links: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),
 });
