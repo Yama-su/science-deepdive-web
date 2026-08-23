@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { withBase } from '../lib/withBase';
 import '../styles/science-deepdive.css';
 
 const categoryLabel = {
@@ -23,6 +24,7 @@ const posts = allPosts.sort(
       name="description"
       content="物理・化学・数学の「なぜ？」を、小学生の直感から大学レベルの数理まで一気通貫で解説する科学読み物メディア。"
     />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
   </head>
   <body>
     <main class="article-container">
@@ -34,7 +36,7 @@ const posts = allPosts.sort(
       <ul class="post-list">
         {posts.map((post) => (
           <li class="post-card">
-            <a href={`/blog/${post.data.slug}/`}>
+            <a href={withBase(`/blog/${post.data.slug}/`)}>
               <span class="post-category">{categoryLabel[post.data.category]}</span>
               <h2>{post.data.title}</h2>
               <p>{post.data.lead_excerpt}</p>
