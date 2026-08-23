@@ -1,0 +1,288 @@
+/* ==========================================================================
+   Science Article DeepDive Design System
+   ========================================================================== */
+:root {
+  --font-sans: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --font-serif: 'Newsreader', 'Noto Serif JP', Georgia, serif;
+
+  --color-primary: #1e3a8a;
+  --color-primary-light: #eff6ff;
+  --color-accent: #d97706;
+  --color-text-main: #1f2937;
+  --color-text-muted: #4b5563;
+  --color-bg-main: #ffffff;
+  --color-bg-sub: #f8fafc;
+  --color-border: #e2e8f0;
+
+  --color-kids: #10b981;
+  --color-kids-bg: #ecfdf5;
+  --color-math: #6366f1;
+  --color-math-bg: #eef2ff;
+
+  --line-height-body: 1.85;
+  --max-content-width: 860px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg-main);
+  color: var(--color-text-main);
+}
+
+/* 記事コンテナ */
+.article-container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  font-family: var(--font-sans);
+  color: var(--color-text-main);
+  line-height: var(--line-height-body);
+  font-size: 1.0625rem;
+  letter-spacing: 0.02em;
+}
+
+/* タイポグラフィ */
+.article-container h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid var(--color-primary-light);
+  padding-bottom: 0.75rem;
+}
+
+.article-container h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: 3.5rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-left: 5px solid var(--color-primary);
+  padding-left: 0.75rem;
+}
+
+.article-container h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: #334155;
+}
+
+.article-container p {
+  margin: 1rem 0;
+}
+
+.article-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 1.5rem auto;
+}
+
+.article-container figcaption {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: -0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+/* リード文ブロック */
+.article-lead {
+  background: var(--color-bg-sub);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.lead-text {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+  margin: 0 0 1rem 0;
+}
+
+/* 難易度バッジ */
+.difficulty-indicator {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.badge-kids { background: #d1fae5; color: #065f46; }
+.badge-general { background: #dbeafe; color: #1e40af; }
+.badge-academic { background: #ede9fe; color: #5b21b6; }
+
+/* 構造化コールアウト */
+.callout {
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.75rem 0;
+  border-left: 4px solid;
+}
+
+.callout-title {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.callout-intuition {
+  background: #fffbeb;
+  border-color: var(--color-accent);
+}
+.callout-intuition .callout-title { color: #92400e; }
+
+.callout-kids {
+  background: var(--color-kids-bg);
+  border-color: var(--color-kids);
+}
+.callout-kids .callout-title { color: #065f46; }
+
+.callout-summary {
+  background: #f0fdf4;
+  border-color: #22c55e;
+}
+.callout-summary .callout-title { color: #166534; }
+
+/* 数学・証明ブロック */
+.math-proof-box {
+  background: var(--color-math-bg);
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+.proof-header {
+  background: #e0e7ff;
+  color: #3730a3;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 0.6rem 1.25rem;
+  border-bottom: 1px solid #c7d2fe;
+}
+
+.proof-body {
+  padding: 1.25rem;
+  font-family: var(--font-serif);
+}
+
+/* 数式レンダリング最適化 (KaTeX) */
+.katex-display {
+  margin: 1.5rem 0 !important;
+  padding: 0.75rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* 比較テーブル */
+.article-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.article-container th,
+.article-container td {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.article-container th {
+  background-color: var(--color-bg-sub);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.article-container tr:nth-child(even) {
+  background-color: #fcfcfd;
+}
+
+/* ソースコードブロック */
+.article-container pre {
+  padding: 1.25rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 1.75rem 0;
+}
+
+/* 目次 */
+.toc-box {
+  background: var(--color-bg-sub);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+}
+
+.toc-box summary {
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--color-primary);
+}
+
+.toc-box ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+}
+
+/* 広告枠 */
+.ad-slot {
+  margin: 2rem auto;
+  max-width: var(--max-content-width);
+  text-align: center;
+}
+
+.ad-slot .ad-label {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+
+.ad-slot.top-ad,
+.ad-slot.bottom-ad,
+.ad-slot.in-article-ad {
+  min-height: 90px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text-main: #e5e7eb;
+    --color-text-muted: #9ca3af;
+    --color-bg-main: #0f172a;
+    --color-bg-sub: #1e293b;
+    --color-border: #334155;
+    --color-primary-light: #1e293b;
+  }
+}

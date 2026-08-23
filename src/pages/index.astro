@@ -1,0 +1,88 @@
+---
+import { getCollection } from 'astro:content';
+import '../styles/science-deepdive.css';
+
+const categoryLabel = {
+  physics: '物理学',
+  chemistry: '化学',
+  mathematics: '数学',
+};
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = allPosts.sort(
+  (a, b) => b.data.published_at.valueOf() - a.data.published_at.valueOf(),
+);
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>サイエンス・ディープダイブ ― 科学の素朴な疑問を掘り下げるメディア</title>
+    <meta
+      name="description"
+      content="物理・化学・数学の「なぜ？」を、小学生の直感から大学レベルの数理まで一気通貫で解説する科学読み物メディア。"
+    />
+  </head>
+  <body>
+    <main class="article-container">
+      <h1>サイエンス・ディープダイブ</h1>
+      <p class="lead-text">
+        物理・化学・数学の素朴な疑問を、子どもの直感から大学の数理まで掘り下げます。
+      </p>
+
+      <ul class="post-list">
+        {posts.map((post) => (
+          <li class="post-card">
+            <a href={`/blog/${post.data.slug}/`}>
+              <span class="post-category">{categoryLabel[post.data.category]}</span>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.lead_excerpt}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {posts.length === 0 && (
+        <p>まだ記事がありません。<code>src/content/blog/</code>にMarkdown記事を追加してください。</p>
+      )}
+    </main>
+
+    <style>
+      .post-list {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        gap: 1.5rem;
+      }
+      .post-card {
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: box-shadow 0.15s ease;
+      }
+      .post-card:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      }
+      .post-card a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+      .post-category {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--color-accent);
+        text-transform: uppercase;
+      }
+      .post-card h2 {
+        margin: 0.5rem 0;
+        color: var(--color-primary);
+      }
+      .post-card p {
+        margin: 0;
+        color: var(--color-text-muted);
+      }
+    </style>
+  </body>
+</html>

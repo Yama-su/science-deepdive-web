@@ -1,0 +1,23 @@
+---
+interface Props {
+  position: 'top' | 'in-article' | 'bottom';
+}
+const { position } = Astro.props;
+const labels = {
+  top: '広告',
+  'in-article': '広告',
+  bottom: '広告',
+};
+---
+
+<div class={`ad-slot ${position}-ad`}>
+  <div class="ad-label">{labels[position]}</div>
+
+  <!--
+    ここに広告タグを設置する。
+    - Google AdSense: <ins class="adsbygoogle" ...></ins> + adsbygoogle.jsの読み込み
+    - A8.net / もしもアフィリエイト等ASP: 発行されたiframe/scriptタグをそのまま貼り付け
+    審査・登録がまだの間はこのブロックは空のまま（何も表示されない）。
+  -->
+  <slot />
+</div>

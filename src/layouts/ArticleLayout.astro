@@ -1,0 +1,77 @@
+---
+import '../styles/science-deepdive.css';
+import AdSlot from '../components/AdSlot.astro';
+
+const audienceBadge = {
+  '小学生': 'badge-kids',
+  '中高生': 'badge-kids',
+  '大学生・一般': 'badge-general',
+  '研究者': 'badge-academic',
+};
+
+const { post, headings = [] } = Astro.props;
+const siteUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.toString();
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{post.seo.meta_title}</title>
+  <meta name="description" content={post.seo.meta_description} />
+  <link rel="canonical" href={siteUrl} />
+
+  <!-- OGP / SNSカード -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content={post.seo.meta_title} />
+  <meta property="og:description" content={post.seo.meta_description} />
+  <meta property="og:image" content={post.seo.og_image} />
+  <meta property="og:url" content={siteUrl} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  {post.math && (
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  )}
+</head>
+<body>
+  <main class="article-container">
+    <div class="article-lead">
+      <p class="lead-text">{post.lead_excerpt}</p>
+      <div class="difficulty-indicator">
+        {post.target_audience.map((level) => (
+          <span class={`badge ${audienceBadge[level] ?? 'badge-general'}`}>{level}</span>
+        ))}
+      </div>
+    </div>
+
+    <!-- 記事上部：広告枠 -->
+    <AdSlot position="top" />
+
+    <h1>{post.title}</h1>
+
+    {post.table_of_contents && headings.length > 0 && (
+      <details class="toc-box" open>
+        <summary>目次</summary>
+        <ul>
+          {headings.filter((h) => h.depth <= 2).map((h) => (
+            <li><a href={`#${h.slug}`}>{h.text}</a></li>
+          ))}
+        </ul>
+      </details>
+    )}
+
+    <article>
+      <slot />
+    </article>
+
+    <!-- 記事下部：関連書籍・物販アフィリエイト枠 -->
+    <AdSlot position="bottom">
+      <div class="callout callout-summary">
+        <div class="callout-title">おすすめの関連書籍・専門書</div>
+        <!-- Amazon associates / 楽天アフィリエイト等のリンクをここに挿入 -->
+      </div>
+    </AdSlot>
+  </main>
+</body>
+</html>
